@@ -1,0 +1,20 @@
+pathlib
+tensorflow==2.16.1
+modin[all]
+dvc
+mlflow==2.13.0
+notebook
+numpy
+matplotlib
+seaborn
+python-box[all]==7.0
+pyYAML
+tqdm
+ensure
+joblib
+types-PyYAML
+scipy
+Flask
+Flask-cors
+kaggle
+-e .
