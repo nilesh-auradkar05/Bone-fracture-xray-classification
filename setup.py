@@ -7,7 +7,7 @@ __version__ = "0.0.0"
 
 REPO_NAME = "Bone-fracture-xray-classification"
 AUTHOR_USER_NAME = "nilesh-auradkar05"
-SRC_REPO = "Bone-Fracture-Classification"
+SRC_REPO = "boneFractureClassification"
 AUTHOR_EMAIL = "nilesh.auradkar.0599@gmail.com"
 
 setuptools.setup(
