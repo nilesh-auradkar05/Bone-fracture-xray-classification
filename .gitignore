@@ -162,5 +162,5 @@ cython_debug/
 #.idea/
 
 # project files to ignore
-
+artifacts/*
 

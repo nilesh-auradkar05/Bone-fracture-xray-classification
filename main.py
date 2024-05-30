@@ -1,12 +1,14 @@
-import os
-from box.exceptions import BoxException
-import yaml
 from boneFractureClassification import logger
-import json
-import joblib
-from ensure import ensure_annotations
-from box import ConfigBox
-from pathlib import Path
-from typing import Any
-import base64
+from boneFractureClassification.pipeline.stage_01_data_ingestion import DataIngestionPipeline
+
+STAGE_NAME = "Data Ingestion Stage"
+
+try:
+    logger.info(f"{STAGE_NAME}")
+    dataPipeline = DataIngestionPipeline()
+    dataPipeline.main()
+    logger.info(f"{STAGE_NAME} completed!")
+except Exception as e:
+    logger.exception(e)
+    raise e
 
