@@ -5,3 +5,9 @@ data_ingestion:
   source_url: https://www.kaggle.com/datasets/bmadushanirodrigo/fracture-multi-region-x-ray-data
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion
+
+base_model:
+  root_dir: artifacts/base_model
+  custom_train_model_dir: artifacts/custom_train_model
+  base_model_path: artifacts/base_model/base_model.h5
+  custom_trained_model_path: artifacts/custom_train_model/custom_trained_base_model.h5
