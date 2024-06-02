@@ -1,19 +1,26 @@
 from boneFractureClassification import logger
-from boneFractureClassification.pipeline.stage_01_data_ingestion import DataIngestionPipeline
-from boneFractureClassification.pipeline.stage_02_base_model import PrepareBaseModelTrainingPipeline
+from boneFractureClassification.pipeline.stage_01_data_ingestion import (
+    DataIngestionPipeline,
+)
+from boneFractureClassification.pipeline.stage_02_base_model import (
+    PrepareBaseModelTrainingPipeline,
+)
+from boneFractureClassification.pipeline.stage_03_train_model import (
+    ModelTrainingPipeline,
+)
 
-STAGE_NAME = "Data Ingestion Stage"
+# STAGE_NAME = "Data Ingestion Stage"
 
-try:
+"""try:
     logger.info(f"{STAGE_NAME}")
     dataPipeline = DataIngestionPipeline()
     dataPipeline.main()
     logger.info(f"{STAGE_NAME} completed!")
-    
+
 except Exception as e:
     logger.exception(e)
     raise e
-
+"""
 STAGE_NAME = "Prepare Base Model"
 
 try:
@@ -23,4 +30,15 @@ try:
     logger.info(f"{STAGE_NAME} completed!")
 except Exception as e:
     logger.exception(e)
-    raise e 
+    raise e
+
+STAGE_NAME = "Model Training"
+
+try:
+    logger.info(f"{STAGE_NAME}")
+    model_training_pipeline = ModelTrainingPipeline()
+    model_training_pipeline.main()
+    logger.info(f"{STAGE_NAME} completed!")
+except Exception as e:
+    logger.exception(e)
+    raise e
