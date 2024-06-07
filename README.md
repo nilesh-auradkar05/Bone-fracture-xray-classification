@@ -51,3 +51,16 @@ python app.py
 ```bash
 Now, open the local host and port
 ```
+
+# DagsHub
+
+### DagsHub is a web platform based on open source tools, optimized for data science and oriented towards the open source community.
+### It is a central location where projects can be hosted, discovered, and collaborated on by contributors.
+[DagsHub Documentation](https://dagshub.com/docs/)
+```bash
+1. Signup to a Free DagsHub account
+2. Create a .env file and copy MLFLOW_TRACKING_URI, MLFLOW_TRACKING_USERNAME,
+MLFLOW_TRACKING_PASSWORD,
+Bucket_Name to .env file.
+```
+

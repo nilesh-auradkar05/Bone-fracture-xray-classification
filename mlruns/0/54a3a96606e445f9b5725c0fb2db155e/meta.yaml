@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/naura/Desktop/end-to-end-ML/computer-vision/Bone-fracture-xray-classification/mlruns/0/54a3a96606e445f9b5725c0fb2db155e/artifacts
+end_time: 1717699773928
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 54a3a96606e445f9b5725c0fb2db155e
+run_name: magnificent-bat-336
+run_uuid: 54a3a96606e445f9b5725c0fb2db155e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717699760337
+status: 3
+tags: []
+user_id: Jarvis

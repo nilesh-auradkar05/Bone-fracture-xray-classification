@@ -5,16 +5,18 @@ from pathlib import Path
 from PIL import ImageFile
 
 from boneFractureClassification.config.configuration import ModelTrainingConfig
-
-
-ImageFile.LOAD_TRUNCATED_IMAGES = True
+import datetime
 
 
 class ModelTraining:
     def __init__(self, config: ModelTrainingConfig):
+        ImageFile.LOAD_TRUNCATED_IMAGES = True
+
         self.config = config
+        self.__current_datetime = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        self.model_filename = f"custom_model_train_{str(self.__current_datetime)}"
         self.checkpoint = ModelCheckpoint(
-            filepath="artifacts/training/custom_train_model.h5",
+            filepath=f"artifacts/training/{self.model_filename}.h5",
             monitor="val_loss",
             mode="auto",
             save_best_only=True,

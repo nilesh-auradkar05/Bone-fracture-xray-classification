@@ -9,6 +9,10 @@ from boneFractureClassification.pipeline.stage_03_train_model import (
     ModelTrainingPipeline,
 )
 
+from boneFractureClassification.pipeline.stage_04_model_evaluation_and_logging import (
+    ModelInferencePipeline,
+)
+
 # STAGE_NAME = "Data Ingestion Stage"
 
 """try:
@@ -21,8 +25,8 @@ except Exception as e:
     logger.exception(e)
     raise e
 """
-STAGE_NAME = "Prepare Base Model"
-
+# STAGE_NAME = "Prepare Base Model"
+"""
 try:
     logger.info(f"{STAGE_NAME}")
     prepare_base_model_pipeline = PrepareBaseModelTrainingPipeline()
@@ -31,6 +35,7 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
+"""
 
 STAGE_NAME = "Model Training"
 
@@ -39,6 +44,17 @@ try:
     model_training_pipeline = ModelTrainingPipeline()
     model_training_pipeline.main()
     logger.info(f"{STAGE_NAME} completed!")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+STAGE_NAME = "MODEL INFERENCE"
+
+try:
+    logger.info(f"{STAGE_NAME}")
+    model_inference_pipeline = ModelInferencePipeline()
+    model_inference_pipeline.main()
+    logger.info(f"{STAGE_NAME} finished!")
 except Exception as e:
     logger.exception(e)
     raise e

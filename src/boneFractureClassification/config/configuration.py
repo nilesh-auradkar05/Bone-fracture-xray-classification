@@ -1,11 +1,17 @@
 import os
 from pathlib import Path
-from boneFractureClassification.constants import CONFIG_FILE_PATH, PARAMS_FILE_PATH
+from boneFractureClassification.constants import (
+    CONFIG_FILE_PATH,
+    PARAMS_FILE_PATH,
+    MLFLOW_TRACKING_URI,
+)
+from boneFractureClassification.utils.common import select_recent_model
 from boneFractureClassification.utils.common import read_yaml, create_directories
 from boneFractureClassification.entity.config_entity import (
     DataIngestionConfig,
     BaseModelConfig,
     ModelTrainingConfig,
+    InferenceConfig,
 )
 
 
@@ -83,3 +89,16 @@ class ConfigurationManager:
         )
 
         return model_training_config
+
+    def get_inference_config(self) -> InferenceConfig:
+        recent_model = select_recent_model()
+        inference_config = InferenceConfig(
+            path_to_model=f"artifacts/training/{recent_model}",
+            training_data="artifacts/data_ingestion/data.zip/Bone_Fracture_Binary_Classification/test",
+            mlflow_uri=MLFLOW_TRACKING_URI,
+            all_params=self.params,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_batch_size=self.params.BATCH_SIZE,
+        )
+
+        return inference_config
