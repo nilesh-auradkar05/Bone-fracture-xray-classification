@@ -13,9 +13,9 @@ from boneFractureClassification.pipeline.stage_04_model_evaluation_and_logging i
     ModelInferencePipeline,
 )
 
-# STAGE_NAME = "Data Ingestion Stage"
+STAGE_NAME = "Data Ingestion Stage"
 
-"""try:
+try:
     logger.info(f"{STAGE_NAME}")
     dataPipeline = DataIngestionPipeline()
     dataPipeline.main()
@@ -24,9 +24,9 @@ from boneFractureClassification.pipeline.stage_04_model_evaluation_and_logging i
 except Exception as e:
     logger.exception(e)
     raise e
-"""
-# STAGE_NAME = "Prepare Base Model"
-"""
+
+STAGE_NAME = "Prepare Base Model"
+
 try:
     logger.info(f"{STAGE_NAME}")
     prepare_base_model_pipeline = PrepareBaseModelTrainingPipeline()
@@ -35,7 +35,7 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
-"""
+
 
 STAGE_NAME = "Model Training"
 
