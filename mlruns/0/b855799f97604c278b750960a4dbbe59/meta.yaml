@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/naura/Desktop/end-to-end-ML/computer-vision/Bone-fracture-xray-classification/mlruns/0/b855799f97604c278b750960a4dbbe59/artifacts
+end_time: 1718358996098
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b855799f97604c278b750960a4dbbe59
+run_name: casual-squid-915
+run_uuid: b855799f97604c278b750960a4dbbe59
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718358983173
+status: 3
+tags: []
+user_id: naura

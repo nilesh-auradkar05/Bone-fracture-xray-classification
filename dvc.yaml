@@ -1,0 +1,51 @@
+stages:
+  data_ingestion:
+    cmd: python src\boneFractureClassification\pipeline\stage_01_data_ingestion.py
+    deps:
+      - src\boneFractureClassification\pipeline\stage_01_data_ingestion.py
+      - config\config.yaml
+    outs:
+      - artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+
+  base_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_02_base_model.py
+    deps:
+      - src\boneFractureClassification\pipeline\stage_02_base_model.py
+      - config\config.yaml
+    params:
+      - IMAGE_SIZE
+      - INCLUDE_TOP
+      - CLASSES
+      - WEIGHTS
+      - LEARNING_RATE
+    outs:
+      - artifacts\base_model
+
+  train_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_03_train_model.py
+    deps:
+      - src\boneFractureClassification\pipeline\stage_03_train_model.py
+      - config\config.yaml
+      - artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+      - artifacts\base_model\
+    params:
+     - IMAGE_SIZE
+     - EPOCHS
+     - BATCH_SIZE
+     - AUGMENTATION
+    outs:
+     - artifacts\training\
+
+  evaluate_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_04_model_evaluation_and_logging.py
+    deps:
+     - src\boneFractureClassification\pipeline\stage_04_model_evaluation_and_logging.py
+     - config\config.yaml
+     - artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+     - artifacts\training\
+    params:
+     - IMAGE_SIZE
+     - BATCH_SIZE
+    metrics:
+      - scores.json:
+          cache: false

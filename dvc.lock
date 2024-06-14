@@ -1,0 +1,118 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src\boneFractureClassification\pipeline\stage_01_data_ingestion.py
+    deps:
+    - path: config\config.yaml
+      hash: md5
+      md5: 16f90a74611fa7b855f72e953cfa6632
+      size: 625
+    - path: src\boneFractureClassification\pipeline\stage_01_data_ingestion.py
+      hash: md5
+      md5: 63b59202ea93c8d403fffabb24d15e42
+      size: 893
+    outs:
+    - path: 
+        artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+      hash: md5
+      md5: 7f4f31b7c7fc53b4d47fcb23a6a1622d.dir
+      size: 507723650
+      nfiles: 10581
+  base_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_02_base_model.py
+    deps:
+    - path: config\config.yaml
+      hash: md5
+      md5: 16f90a74611fa7b855f72e953cfa6632
+      size: 625
+    - path: src\boneFractureClassification\pipeline\stage_02_base_model.py
+      hash: md5
+      md5: b6d3ca49b7509b2155d59c12583a36e0
+      size: 898
+    params:
+      params.yaml:
+        CLASSES: 2
+        IMAGE_SIZE:
+        - 528
+        - 528
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.001
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts\base_model
+      hash: md5
+      md5: 82a68c011a5041e71e0241ba92b8ea6e.dir
+      size: 58920408
+      nfiles: 1
+  train_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_03_train_model.py
+    deps:
+    - path: artifacts\base_model\
+      hash: md5
+      md5: 82a68c011a5041e71e0241ba92b8ea6e.dir
+      size: 58920408
+      nfiles: 1
+    - path: 
+        artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+      hash: md5
+      md5: 7f4f31b7c7fc53b4d47fcb23a6a1622d.dir
+      size: 507723650
+      nfiles: 10581
+    - path: config\config.yaml
+      hash: md5
+      md5: 16f90a74611fa7b855f72e953cfa6632
+      size: 625
+    - path: src\boneFractureClassification\pipeline\stage_03_train_model.py
+      hash: md5
+      md5: d1b3e45d5a38066b8e3a56115780364a
+      size: 899
+    params:
+      params.yaml:
+        AUGMENTATION: false
+        BATCH_SIZE: 18
+        EPOCHS: 200
+        IMAGE_SIZE:
+        - 528
+        - 528
+        - 3
+    outs:
+    - path: artifacts\training\
+      hash: md5
+      md5: f650b3b36a65c46bac06c5d855ef9978.dir
+      size: 59983008
+      nfiles: 1
+  evaluate_model:
+    cmd: python src\boneFractureClassification\pipeline\stage_04_model_evaluation_and_logging.py
+    deps:
+    - path: 
+        artifacts\data_ingestion\Bone_Fracture_Binary_Classification\Bone_Fracture_Binary_Classification\
+      hash: md5
+      md5: 7f4f31b7c7fc53b4d47fcb23a6a1622d.dir
+      size: 507723650
+      nfiles: 10581
+    - path: artifacts\training\
+      hash: md5
+      md5: f650b3b36a65c46bac06c5d855ef9978.dir
+      size: 59983008
+      nfiles: 1
+    - path: config\config.yaml
+      hash: md5
+      md5: 16f90a74611fa7b855f72e953cfa6632
+      size: 625
+    - path: src\boneFractureClassification\pipeline\stage_04_model_evaluation_and_logging.py
+      hash: md5
+      md5: 7f1f96d04fd944a1113cde9e9758e756
+      size: 851
+    params:
+      params.yaml:
+        BATCH_SIZE: 18
+        IMAGE_SIZE:
+        - 528
+        - 528
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 0705bc77d0b99d359c132cb80b646ef4
+      size: 71

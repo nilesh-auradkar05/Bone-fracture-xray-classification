@@ -66,12 +66,12 @@ class ConfigurationManager:
         params = self.params
 
         training_data = os.path.join(
-            self.config.data_ingestion.local_data_file,
-            "Bone_Fracture_Binary_Classification/train",
+            self.config.data_ingestion.unzip_dir,
+            "Bone_Fracture_Binary_Classification/Bone_Fracture_Binary_Classification/train",
         )
         validation_data = os.path.join(
-            self.config.data_ingestion.local_data_file,
-            "Bone_Fracture_Binary_Classification/val",
+            self.config.data_ingestion.unzip_dir,
+            "Bone_Fracture_Binary_Classification/Bone_Fracture_Binary_Classification/val",
         )
 
         create_directories([Path(training.root_dir)])
@@ -94,7 +94,7 @@ class ConfigurationManager:
         recent_model = select_recent_model()
         inference_config = InferenceConfig(
             path_to_model=f"artifacts/training/{recent_model}",
-            training_data="artifacts/data_ingestion/data.zip/Bone_Fracture_Binary_Classification/test",
+            training_data="artifacts/data_ingestion/Bone_Fracture_Binary_Classification/Bone_Fracture_Binary_Classification/test",
             mlflow_uri=MLFLOW_TRACKING_URI,
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
