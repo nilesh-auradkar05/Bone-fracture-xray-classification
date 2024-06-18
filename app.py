@@ -11,5 +11,9 @@ def prediction(img):
     return result
     
 if __name__ == "__main__":
-    gradio_app = gr.Interface(prediction, gr.inputs.Image(type="pil"), outputs=gr.outputs.Label(num_top_classes=2), capture_session=True)
-    gradio_app.launch(share=True)
+    app = gr.Interface(prediction,
+                       gr.inputs.Image(type="pil"),
+                       outputs=gr.outputs.Label(num_top_classes=2),
+                       capture_session=True,
+                       server_name="0.0.0.0")
+    app.launch(share=True)
