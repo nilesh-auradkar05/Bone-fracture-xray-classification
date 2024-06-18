@@ -18,7 +18,7 @@ jobs:
 # Important Part #
 
       - name: Build, Push and Release a Docker container to Heroku. # Your custom step name.
-        uses: gonuit/heroku-docker-container@v1.3.3 # Github action name (Leave it as it is).
+        uses: gonuit/heroku-docker-deploy@v1.3.3 # Github action name (Leave it as it is).
         with:
           # Below you must provide variables for your Heroku app.
 
